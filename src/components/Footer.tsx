@@ -1,16 +1,19 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
-    <footer className="border-t border-black/[.08] dark:border-white/[.145]">
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-zinc-600 dark:text-zinc-400 sm:flex-row">
-        <p>&copy; {new Date().getFullYear()} Brojim Digital. Hak cipta terpelihara.</p>
-        <div className="flex gap-6">
-          <a href="https://support.brojimdigital.tech" className="hover:text-foreground transition-colors">
+    <footer className="border-t border-white/10 bg-black">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 py-10 sm:flex-row">
+        <Image src="/brand/logo.png" alt="Brojim Digital" width={120} height={60} className="h-8 w-auto opacity-90" />
+        <div className="flex flex-col items-center gap-2 text-sm text-zinc-400 sm:flex-row sm:gap-6">
+          <a href="https://support.brojimdigital.tech" className="transition-colors hover:text-gold-bright">
             Support
           </a>
-          <a href="mailto:hello@brojimdigital.tech" className="hover:text-foreground transition-colors">
+          <a href="mailto:hello@brojimdigital.tech" className="transition-colors hover:text-gold-bright">
             hello@brojimdigital.tech
           </a>
         </div>
+        <p className="text-xs text-zinc-500">&copy; {new Date().getFullYear()} Brojim Digital.</p>
       </div>
     </footer>
   );
