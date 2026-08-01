@@ -1,6 +1,26 @@
 export type Locale = "ms" | "en";
 
-export const translations = {
+export type Translations = {
+  nav: { servis: string; tentang: string; portal: string };
+  hero: {
+    titleBefore: string;
+    titleHighlight: string;
+    titleAfter: string;
+    subtitle: string;
+    ctaContact: string;
+    ctaServices: string;
+  };
+  services: {
+    label: string;
+    heading: string;
+    items: { title: string; description: string }[];
+  };
+  clientCta: { heading: string; description: string; button: string };
+  about: { label: string; description: string };
+  footer: { support: string; rights: string };
+};
+
+export const translations: Record<Locale, Translations> = {
   ms: {
     nav: { servis: "Servis", tentang: "Tentang", portal: "Portal Klien" },
     hero: {
@@ -99,4 +119,4 @@ export const translations = {
       rights: "All rights reserved.",
     },
   },
-} as const;
+};

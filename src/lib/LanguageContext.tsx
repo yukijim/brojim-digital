@@ -1,12 +1,12 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import { translations, type Locale } from "./translations";
+import { translations, type Locale, type Translations } from "./translations";
 
 type LanguageContextValue = {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  t: (typeof translations)["ms"];
+  t: Translations;
 };
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
