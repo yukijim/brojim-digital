@@ -127,3 +127,50 @@ body {
 .client-tile:hover .client-float {
   animation-play-state: paused;
 }
+
+/* Client logos, mobile: auto-scrolling marquee with faded edges */
+.client-marquee {
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.15s;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.client-marquee.is-visible {
+  opacity: 1;
+}
+
+.client-marquee-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  padding: 4px 0;
+  animation: client-marquee 22s linear infinite;
+}
+
+/* Each list copy ends with the 12px gap so -50% lands exactly on the loop seam */
+.client-marquee-track > li:last-child {
+  margin-right: 12px;
+}
+
+.client-marquee:active .client-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes client-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .client-marquee {
+    opacity: 1;
+    overflow-x: auto;
+  }
+
+  .client-marquee-track {
+    animation: none;
+  }
+}

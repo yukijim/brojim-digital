@@ -28,13 +28,28 @@ export default function ClientLogos() {
   }, []);
 
   return (
-    <section ref={ref} className="mx-auto max-w-6xl px-6 py-12">
+    <section ref={ref} className="mx-auto max-w-6xl py-10 sm:px-6 sm:py-12">
       <h2
-        className={`client-heading text-center text-xl font-semibold tracking-tight sm:text-2xl ${visible ? "is-visible" : ""}`}
+        className={`client-heading px-6 text-center text-lg font-semibold tracking-tight sm:px-0 sm:text-2xl ${visible ? "is-visible" : ""}`}
       >
         <span className="text-gold-gradient">{CLIENTS_HEADING[locale]}</span>
       </h2>
-      <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+
+      {/* Mobile: one auto-scrolling row, duplicated for a seamless loop */}
+      <div className={`client-marquee mt-6 sm:hidden ${visible ? "is-visible" : ""}`}>
+        <ul className="client-marquee-track">
+          {[...clients, ...clients].map((c, i) => (
+            <li key={`${c.name}-${i}`} aria-hidden={i >= clients.length || undefined}>
+              <div className="flex h-16 w-32 items-center justify-center rounded-xl border border-white/10 bg-white p-2.5">
+                <img src={c.logo} alt={c.name} className="max-h-full max-w-full object-contain" />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Tablet & desktop: grid with staggered entrance, float and hover shine */}
+      <ul className="mt-8 hidden grid-cols-3 gap-4 sm:grid lg:grid-cols-6">
         {clients.map((c, i) => (
           <li
             key={c.name}
