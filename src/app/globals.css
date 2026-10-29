@@ -37,3 +37,93 @@ body {
   background-clip: text;
   color: transparent;
 }
+
+/* Client logos: staggered entrance, idle float, hover glow + shine sweep */
+.client-heading {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.client-heading.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.client-tile {
+  opacity: 0;
+  transform: translateY(28px) scale(0.9);
+  transition:
+    opacity 0.6s ease calc(var(--i) * 110ms + 150ms),
+    transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--i) * 110ms + 150ms);
+}
+
+.client-tile.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.client-tile.is-visible .client-float {
+  animation: client-float 4.5s ease-in-out calc(var(--i) * -0.7s) infinite;
+}
+
+.client-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.client-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(240, 193, 100, 0.45) 50%, transparent 65%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.client-logo {
+  transition: transform 0.3s ease;
+}
+
+.client-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  border-color: rgba(212, 161, 61, 0.8);
+  box-shadow: 0 0 0 2px rgba(212, 161, 61, 0.55), 0 14px 32px -10px rgba(212, 161, 61, 0.65);
+}
+
+.client-card:hover::after {
+  transform: translateX(120%);
+  transition: transform 0.75s ease;
+}
+
+.client-card:hover .client-logo {
+  transform: scale(1.08);
+}
+
+@keyframes client-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .client-heading,
+  .client-tile {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .client-tile.is-visible .client-float {
+    animation: none;
+  }
+}
+
+.client-tile:hover .client-float {
+  animation-play-state: paused;
+}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ServiceCard from "@/components/ServiceCard";
+import ClientLogos from "@/components/ClientLogos";
 import { useLanguage } from "@/lib/LanguageContext";
 
 const icons = [
@@ -66,6 +67,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <ClientLogos />
 
         {/* Servis Teras */}
         <section id="servis" className="mx-auto max-w-6xl px-6 py-16">
